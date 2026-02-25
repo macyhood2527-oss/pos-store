@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Reports</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+ 
+
+     <header class="topbar">
+  <h1>Reports</h1>
+
+  <nav class="topLinks">
+    <a href="/inventory.html">Inventory</a>
+    <a href="/pos.html">POS</a>
+    <a href="/reports.html">Reports</a>
+  </nav>
+
+  <div class="status" id="status">Ready</div>
+    </header>
+
+  <main class="layout" style="grid-template-columns: 1fr 1fr 1fr;">
+    <section class="card">
+      <div class="cardHead">
+        <h2>Date Range</h2>
+        <a class="secondary" href="/inventory.html">Inventory</a>
+      </div>
+
+      <a class="secondary" id="printDailyBtn" target="_blank">🖨️ Print Daily</a>
+      <a class="secondary" id="csvBtn" target="_blank">⬇️ Download CSV</a>
+
+
+
+      <form id="rangeForm" class="form">
+        <div class="row">
+          <label>Start
+            <input id="start" type="date" required />
+          </label>
+          <label>End
+            <input id="end" type="date" required />
+          </label>
+        </div>
+
+        <div class="row">
+          <label>Top Products Limit
+            <input id="limit" type="number" min="1" max="50" value="10" />
+          </label>
+          <button type="submit">Run Reports</button>
+        </div>
+      </form>
+
+      <div class="divider"></div>
+      <div id="summaryBox" class="muted">No data yet</div>
+    </section>
+
+    <section class="card">
+      <h2>Daily Sales</h2>
+      <div class="tableWrap">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Day</th>
+              <th>Tx</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody id="dailyTbody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Low Stock</h2>
+      <button id="lowStockBtn" class="secondary">Refresh</button>
+      <div class="divider"></div>
+      <div class="tableWrap">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>SKU</th>
+              <th>Name</th>
+              <th>Stock</th>
+              <th>Reorder</th>
+            </tr>
+          </thead>
+          <tbody id="lowStockTbody"></tbody>
+        </table>
+      </div>
+
+      <div class="divider"></div>
+
+      <h2>Top Products</h2>
+      <div class="tableWrap">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>SKU</th>
+              <th>Name</th>
+              <th>Qty</th>
+              <th>Revenue</th>
+            </tr>
+          </thead>
+          <tbody id="topTbody"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script src="reports.js"></script>
+</body>
+</html>

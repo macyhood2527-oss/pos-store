@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>POS — Cashier</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <h1>POS (Cashier)</h1>
+    <div class="status" id="status">Ready</div>
+  </header>
+
+  <main class="layout">
+
+    <!-- LEFT: Scan/Add -->
+    <section class="card">
+      <div class="cardHead">
+        <h2>Scan / Add Item</h2>
+        <a class="secondary" href="/inventory.html">Admin</a>
+      </div>
+
+      <form id="scanForm" class="form">
+        <label>
+          SKU / Barcode
+          <input id="codeInput" placeholder="Scan or type code..." autocomplete="off" required />
+        </label>
+
+        <div class="row">
+          <label>
+            Qty
+            <input id="qtyInput" type="number" min="1" value="1" required />
+          </label>
+          <button type="submit">Add to Cart</button>
+        </div>
+      </form>
+
+      <div class="divider"></div>
+      <div class="muted small" id="scanHint">Tip: press Enter after scanning.</div>
+    </section>
+
+    <!-- MIDDLE: Cart -->
+    <section class="card">
+      <div class="cardHead">
+        <h2>Cart</h2>
+        <button id="clearCartBtn" class="secondary">Clear</button>
+      </div>
+
+      <div class="tableWrap">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th>Price</th>
+              <th style="width:160px;">Qty</th>
+              <th>Total</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="cartTbody"></tbody>
+        </table>
+      </div>
+
+      <div id="emptyCart" class="muted">Cart is empty</div>
+    </section>
+
+    <!-- RIGHT: Checkout -->
+    <section class="card">
+      <h2>Checkout</h2>
+
+      <div class="summary">
+        <div class="line"><span>Subtotal</span><b id="subtotal">₱0.00</b></div>
+        <div class="line">
+          <span>Discount</span>
+          <input id="discount" type="number" min="0" step="0.01" value="0" />
+        </div>
+        <div class="line"><span>Total</span><b id="total">₱0.00</b></div>
+
+        <div class="divider"></div>
+
+
+
+
+        <div class="divider"></div>
+
+        <div class="line">
+          <span>Cash Received</span>
+          <input id="cash" type="number" min="0" step="0.01" value="0" />
+        </div>
+        <div class="line"><span>Change</span><b id="change">₱0.00</b></div>
+
+        <button id="checkoutBtn">Checkout</button>
+        <div class="muted small" id="lastReceipt"></div>
+      </div>
+
+      <h3>Receipt Lookup</h3>
+<form id="receiptLookupForm" class="form">
+  <label>
+    Receipt No
+    <input name="receipt_no" placeholder="20260130-000123" required />
+  </label>
+  <button type="submit" class="secondary">View Receipt</button>
+</form>
+
+    </section>
+
+  </main>
+
+  <script src="pos.js"></script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Login</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <h1>POS Store Login</h1>
+    <div class="status" id="status">Enter credentials</div>
+  </header>
+
+  <main class="layout" style="grid-template-columns: 1fr; max-width:520px;">
+    <section class="card">
+      <h2>Sign in</h2>
+      <form id="loginForm" class="form">
+        <label>Username
+          <input name="username" required />
+        </label>
+
+        <label>Password
+          <input name="password" type="password" required />
+        </label>
+
+        <button type="submit">Login</button>
+      </form>
+
+      <div class="divider"></div>
+      <div class="muted small">Cashier → POS only • Admin → Inventory + Reports</div>
+    </section>
+  </main>
+
+  <script src="login.js"></script>
+</body>
+</html>

@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Inventory — Admin</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <header class="topbar">
+  <h1>Inventory — Admin</h1>
+
+  <nav class="topLinks">
+    <a href="/inventory.html">Inventory</a>
+    <a href="/pos.html">POS</a>
+    <a href="/reports.html">Reports</a>
+  </nav>
+
+  <div class="status" id="status">Ready</div>
+    </header>
+
+
+  <main class="layout">
+
+    <!-- LEFT: ADD PRODUCT -->
+    <section class="card">
+      <div class="cardHead">
+        <h2>Add Product</h2>
+        <a class="secondary" href="/pos.html">POS</a>
+      </div>
+
+      <form id="productForm" class="form">
+        <label>
+          SKU
+          <input name="sku" placeholder="SKU-001" required />
+        </label>
+
+        <label>
+          Barcode (optional)
+          <input name="barcode" placeholder="4801234567890" />
+        </label>
+
+        <label>
+          Name
+          <input name="name" placeholder="Coke 355ml" required />
+        </label>
+
+        <label>
+          Category (optional)
+          <input name="category" placeholder="Drinks" />
+        </label>
+
+        <div class="row">
+          <label>
+            Price
+            <input name="current_price" type="number" step="0.01" placeholder="25" />
+          </label>
+
+          <label>
+            Reorder Level
+            <input name="reorder_level" type="number" placeholder="5" />
+          </label>
+        </div>
+
+        <button type="submit">Create Product</button>
+      </form>
+    </section>
+
+    <!-- MIDDLE: PRODUCT LIST -->
+    <section class="card">
+      <div class="cardHead">
+        <h2>Products</h2>
+        <button id="refreshBtn" class="secondary">Refresh</button>
+      </div>
+
+      <input id="search" class="search" placeholder="Search SKU / Barcode / Name..." />
+
+      <div class="tableWrap">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>SKU</th>
+              <th>Barcode</th>
+              <th>Name</th>
+              <th>Price</th>
+              <th>Stock</th>
+              <th>Reorder</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="productsTbody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- RIGHT: SELECTED + ACTIONS -->
+    <section class="card">
+      <h2>Selected Product</h2>
+
+      <div class="selected" id="selectedBox">
+        <div class="muted">No product selected</div>
+      </div>
+
+      <div class="divider"></div>
+
+      <h3>Change Price</h3>
+      <form id="priceForm" class="form">
+        <label>
+          New Price
+          <input name="new_price" type="number" step="0.01" required />
+        </label>
+        <button type="submit" id="priceBtn" disabled>Update Price</button>
+      </form>
+
+      <div class="divider"></div>
+
+      <h3>Stock In</h3>
+      <form id="stockInForm" class="form">
+        <label>
+          Qty
+          <input name="qty" type="number" placeholder="10" required />
+        </label>
+
+        <label>
+          Unit Cost (optional)
+          <input name="unit_cost" type="number" step="0.01" placeholder="15" />
+        </label>
+
+        <label>
+          Note (optional)
+          <input name="note" placeholder="Initial stock" />
+        </label>
+
+        <button type="submit" id="stockInBtn" disabled>Add Stock</button>
+      </form>
+
+      <div class="divider"></div>
+
+      <div class="cardHead">
+        <h3>Movements</h3>
+        <button id="movementsRefreshBtn" class="secondary" disabled>Refresh</button>
+      </div>
+
+      <div class="movements" id="movementsList">
+        <div class="muted">Select a product to view movements</div>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="inventory.js"></script>
+</body>
+</html>

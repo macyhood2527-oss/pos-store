@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Receipt Preview</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* small receipt-like layout */
+    .receiptWrap { max-width: 520px; margin: 0 auto; }
+    .receiptCard { padding: 16px; }
+    .receiptHead { display:flex; justify-content:space-between; align-items:flex-start; gap:12px; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
+    .receiptTable { width: 100%; border-collapse: collapse; margin-top: 10px; }
+    .receiptTable th, .receiptTable td { padding: 8px 6px; border-bottom: 1px dashed rgba(255,255,255,0.12); }
+    .receiptTable th { text-align:left; font-size: 12px; opacity: 0.8; }
+    .receiptTable td.r { text-align:right; }
+    .totals { margin-top: 12px; display:grid; gap:6px; }
+    .totals .row { display:flex; justify-content:space-between; gap:10px; }
+    .bigTotal { font-size: 18px; font-weight: 800; }
+    .actionsRow { display:flex; gap:10px; flex-wrap:wrap; margin-top: 12px; }
+    .hint { opacity: 0.75; font-size: 12px; }
+
+    @media print{
+      header.topbar, .actionsRow, .hint { display:none !important; }
+      body { background:#fff !important; color:#000 !important; }
+      .card { box-shadow:none !important; border: 1px solid #ccc !important; }
+      .receiptTable th, .receiptTable td { border-bottom: 1px dashed #bbb !important; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <h1>Receipt Preview</h1>
+    <div class="status" id="status">Ready</div>
+  </header>
+
+  <main class="layout" style="grid-template-columns: 1fr; max-width: 720px;">
+    <section class="card receiptWrap">
+      <div class="receiptCard">
+        <div class="receiptHead">
+          <div>
+            <div style="font-weight:800; font-size:18px;">POS Store</div>
+            <div class="small">Receipt: <span class="mono" id="receiptNo">-</span></div>
+            <div class="small" id="soldAt">-</div>
+          </div>
+          <div class="mono small" id="saleId">Sale #-</div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="cardHead" style="margin-top:6px;">
+          <h3 style="margin:0;">Items</h3>
+        </div>
+
+        <table class="receiptTable">
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th class="r">Qty</th>
+              <th class="r">Price</th>
+              <th class="r">Total</th>
+            </tr>
+          </thead>
+          <tbody id="itemsTbody"></tbody>
+        </table>
+
+        <div class="totals">
+          <div class="row"><span>Subtotal</span><b id="subtotal">₱0.00</b></div>
+          <div class="row"><span>Discount</span><b id="discount">₱0.00</b></div>
+          <div class="row"><span>Total</span><span class="bigTotal" id="total">₱0.00</span></div>
+          <div class="row"><span>Cash</span><b id="cash">₱0.00</b></div>
+          <div class="row"><span>Change</span><b id="change">₱0.00</b></div>
+        </div>
+
+        <div class="actionsRow">
+          <button class="secondary" id="printBtn" type="button">🖨️ Print</button>
+          <a class="secondary" href="/pos.html">Back to POS</a>
+          <a class="secondary" href="/reports.html">Back to Reports</a>
+        </div>
+
+        <div class="hint">
+          Tip: You can open this page using <span class="mono">/receipt.html?receipt=YYYYMMDD-000001</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="receipt.js"></script>
+</body>
+</html>
