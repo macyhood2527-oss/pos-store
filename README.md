@@ -20,3 +20,12 @@ A full-stack Inventory and Point of Sale system built using:
 ## Database
 
 Schema available in:
+/sql/schema.sql
+
+## Setup Instructions
+
+1. Clone repo
+2. Run npm install
+3. Create .env using .env.example
+4. Import sql/schema.sql into MySQL
+5. Run npm start
