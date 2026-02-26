@@ -29,3 +29,11 @@ Schema available in:
 3. Create .env using .env.example
 4. Import sql/schema.sql into MySQL
 5. Run npm start
+
+## API Testing
+
+This project includes a Postman collection for testing all endpoints.
+
+Location: docs/postman_collection.json
+
+Import into Postman to test authentication, products, stock-in, and sales routes.
